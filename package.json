@@ -1,5 +1,5 @@
 {
-  "name": "lindsaysayre.github.io",
+  "name": "buckyinsfo.github.io",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,12 +12,12 @@
     "url": "git+https://github.com/lindsaysayre/lindsaysayre.github.io.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "tjs",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lindsaysayre/lindsaysayre.github.io/issues"
+    "url": "https://github.com/buckyinsfo/buckyinsfo.github.io/issues"
   },
-  "homepage": "https://github.com/lindsaysayre/lindsaysayre.github.io#readme",
+  "homepage": "https://github.com/buckyinsfo/buckyinsfo.github.io#readme",
   "dependencies": {
     "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",
