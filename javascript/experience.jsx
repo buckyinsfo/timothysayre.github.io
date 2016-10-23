@@ -1,11 +1,10 @@
-/*
 const React = require('react');
 const ReactDOM = require('react-dom');
 const Modal = require('react-modal');
-const sampleText = require('./sampleText');
+//const sampleText = require('./sampleText');
 
 
-mod/*ule.exports = React.createClass({
+module.exports = React.createClass({
   getInitialState () {
     return {active: 'summary'};
   },
@@ -130,4 +129,3 @@ mod/*ule.exports = React.createClass({
     );
   }
 });
-*/

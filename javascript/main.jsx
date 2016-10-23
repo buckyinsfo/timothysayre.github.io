@@ -3,7 +3,7 @@ const ReactDOM = require('react-dom');
 const Modal = require('react-model');
 const MainNav = require('./main_nav');
 const PointNav = require('./point_nav');
-const Experience = require('./experience');
+//const Experience = require('./experience');
 const Projects = require('./projects');
 const Contact = require('./contact');
 

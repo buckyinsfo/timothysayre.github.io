@@ -1,5 +1,6 @@
 const React = require('react');
-const sampleText = require('./sampleText');
+//
+//const sampleText = require('./sampleText');
 
 module.exports = React.createClass({
   render () {
