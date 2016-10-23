@@ -5,7 +5,7 @@ module.exports = React.createClass({
     return (
       <nav className="main-nav">
         <a onClick={this.props.mainLogoClick}>
-          <div className="logo">BROOKE ANGEL</div>
+          <div className="logo">TIMOTHY SAYRE</div>
         </a>
         <div className="nav-buttons">
           <a href="http://www.linkedin.com/in/timothysayre"
