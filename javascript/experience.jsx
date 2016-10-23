@@ -1,8 +1,11 @@
+/*
 const React = require('react');
+const ReactDOM = require('react-dom');
 const Modal = require('react-modal');
 const sampleText = require('./sampleText');
 
-module.exports = React.createClass({
+
+mod/*ule.exports = React.createClass({
   getInitialState () {
     return {active: 'summary'};
   },
@@ -13,8 +16,7 @@ module.exports = React.createClass({
 
   isActive (category) {
     return this.state.active === category ? 'active' : '';
-  },
-
+  }
   activeContent () {
     if (this.state.active == 'resume') {
       return this.getModal();
@@ -128,3 +130,4 @@ module.exports = React.createClass({
     );
   }
 });
+*/

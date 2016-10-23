@@ -1,6 +1,6 @@
-const ReactDOM = require('react-dom');
 const React = require('react');
-const Modal = require('react-modal');
+const ReactDOM = require('react-dom');
+const Modal = require('react-model');
 const MainNav = require('./main_nav');
 const PointNav = require('./point_nav');
 const Experience = require('./experience');
@@ -67,9 +67,9 @@ const App = React.createClass({
           </div>
         </section>
 
-        <section id="experience">
-          <Experience />
-        </section>
+//        <section id="experience">
+//          <Experience />
+//        </section>
 
         <section id="projects">
           <Projects />
