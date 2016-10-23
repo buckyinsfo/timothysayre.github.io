@@ -67,9 +67,9 @@ const App = React.createClass({
           </div>
         </section>
 
-        <section id="experience">
-          <Experience />
-        </section>
+//        <section id="experience">
+//          <Experience />
+//        </section>
 
         <section id="projects">
           <Projects />

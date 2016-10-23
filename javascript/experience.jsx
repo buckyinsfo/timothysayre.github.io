@@ -1,7 +1,7 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 const Modal = require('react-modal');
-//const sampleText = require('./sampleText');
+const sampleText = require('./sampleText');
 
 
 module.exports = React.createClass({
@@ -15,7 +15,7 @@ module.exports = React.createClass({
 
   isActive (category) {
     return this.state.active === category ? 'active' : '';
-  }
+  },
   activeContent () {
     if (this.state.active == 'resume') {
       return this.getModal();
