@@ -51,7 +51,7 @@
 	var Modal = __webpack_require__(172);
 	var MainNav = __webpack_require__(173);
 	var PointNav = __webpack_require__(174);
-	//const Experience = require('./experience');
+	var Experience = require('./experience');
 	var Projects = __webpack_require__(175);
 	var Contact = __webpack_require__(177);
 	
