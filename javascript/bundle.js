@@ -149,10 +149,13 @@
 	          React.createElement(Experience, null),
 	          '//        '
 	        ),
+	        '//       ',
 	        React.createElement(
 	          'section',
 	          { id: 'projects' },
-	          React.createElement(Projects, null)
+	          '//          ',
+	          React.createElement(Projects, null),
+	          '//        '
 	        ),
 	        React.createElement(
 	          'section',
