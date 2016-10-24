@@ -66,15 +66,9 @@ const App = React.createClass({
             <a><i className="fa fa-arrow-circle-down fa-4x"></i></a>
           </div>
         </section>
-
-//        <section id="experience">
-//          <Experience />
-//        </section>
-
-        <section id="projects">
-          <Projects />
+        <section id="experience">
+          <Experience />
         </section>
-
         <section id="contact">
           <Contact upArrowClick={() => this.scrollTo(0)}/>
         </section>
