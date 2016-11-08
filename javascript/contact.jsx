@@ -12,8 +12,8 @@ module.exports = React.createClass({
             <h2>CONTACT ME</h2>
             <h3>buckyinsfo@gmail.com</h3>
             <p>
-              I am interested in trading, entrepreneurship, fintech, 
-              <br />Do you need project management or code writing for your organization or community project?
+              I am interested in trading, entrepreneurship, reshoring and fintech.
+              <br />Do you need project management or software engineering for your organization or startup project?
               <br />
               Don't hesitate to reach out! 
               <br /><br />

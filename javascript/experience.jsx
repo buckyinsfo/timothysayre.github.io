@@ -30,12 +30,12 @@ module.exports = React.createClass({
             <img src="assets/icons/html5.png" />
             <img src="assets/icons/css3.png" />
             <img src="assets/icons/react.png" /><br />
-            <strong>Version Control Systems | </strong> Git / Github<br /><br />
+            <strong>Version Control Systems | </strong> Git / Github / SVN <br /><br />
             <strong>JavaScript | </strong> JavaScript, React.js, Flux, Redux, Node.js<br /><br />
-            <strong>Ruby | </strong> Ruby, Rails <br /><br />
+            <strong>Languages | </strong> C++, Java, C#, R, Python <br /><br />
             <strong>Testing Frameworks |</strong> RSpec, Capybara, Jest, Jasmine, Mocha<br /><br />
             <strong>Web Design |</strong> CSS3, HTML5<br /><br />
-            <strong>Misc |</strong> Java, Matlab, Scheme<br /><br />
+            <strong>Misc |</strong> CAD, CAM, Matlab <br /><br />
           </center>
 
 
