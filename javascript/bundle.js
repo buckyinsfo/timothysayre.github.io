@@ -21605,7 +21605,7 @@
 	        ),
 	        React.createElement(
 	          "a",
-	          { href: "http://buckyinsfo.tumblr.com/",
+	          { href: "http://timothysayre.tumblr.com/",
 	            target: "_blank" },
 	          React.createElement("i", { className: "fa fa-tumblr fa-2x" })
 	        )
