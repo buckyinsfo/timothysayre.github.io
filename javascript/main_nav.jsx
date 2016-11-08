@@ -16,7 +16,7 @@ module.exports = React.createClass({
             target="_blank">
             <i className="fa fa-github fa-2x"></i>
           </a>
-          <a href="http://buckyinsfo.tumblr.com/"
+          <a href="http://timothysayre.tumblr.com/"
             target="_blank">
             <i className="fa fa-tumblr fa-2x"></i>
           </a>
