@@ -21715,7 +21715,7 @@
 	            null,
 	            'Version Control Systems | '
 	          ),
-	          ' Git / Github',
+	          ' Git / Github / SVN ',
 	          React.createElement('br', null),
 	          React.createElement('br', null),
 	          React.createElement(
@@ -21729,9 +21729,9 @@
 	          React.createElement(
 	            'strong',
 	            null,
-	            'Ruby | '
+	            'Languages | '
 	          ),
-	          ' Ruby, Rails ',
+	          ' C++, Java, C#, R, Python ',
 	          React.createElement('br', null),
 	          React.createElement('br', null),
 	          React.createElement(
@@ -21755,7 +21755,7 @@
 	            null,
 	            'Misc |'
 	          ),
-	          ' Java, Matlab, Scheme',
+	          ' CAD, CAM, Matlab ',
 	          React.createElement('br', null),
 	          React.createElement('br', null)
 	        )
@@ -24030,9 +24030,9 @@
 	          React.createElement(
 	            "p",
 	            null,
-	            "I am interested in trading, entrepreneurship, fintech,",
+	            "I am interested in trading, entrepreneurship, reshoring and fintech.",
 	            React.createElement("br", null),
-	            "Do you need project management or code writing for your organization or community project?",
+	            "Do you need project management or software engineering for your organization or startup project?",
 	            React.createElement("br", null),
 	            "Don't hesitate to reach out!",
 	            React.createElement("br", null),
