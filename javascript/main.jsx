@@ -1,11 +1,12 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-const Modal = require('react-model');
+const Modal = require('react-modal');
 const MainNav = require('./main_nav');
 const PointNav = require('./point_nav');
 const Experience = require('./experience');
 const Projects = require('./projects');
 const Contact = require('./contact');
+
 
 const App = React.createClass({
   getInitialState () {
