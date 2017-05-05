@@ -162,7 +162,7 @@ a {
 .main-banner-overlay {
   opacity: 50%;
   background-size: cover;
-  background-image: url('../assets/images/Colmar-France.png');
+  background-image: url('../assets/images/mountains.jpg');
   width: 100%;
   height: calc(100% + 75px);
   position: fixed;
@@ -320,7 +320,7 @@ a {
 }
 
 .project {
-  background-image: url('http://placecorgi.com/700/500');
+  background-image: url('https://placehold.it/700x500');
   background-size: cover;
   height: 65vh;
   min-height: 350px;
@@ -329,19 +329,19 @@ a {
 }
 
 .project-1 {
-  background-image: url('../assets/images/miniframe-router.png');
+  background-image: url('https://placehold.it/150x150');
 }
 
 .project-2 {
-  background-image: url('../assets/images/harvst.png');
+  background-image: url('https://placehold.it/150x150');
 }
 
 .project-3 {
-  background-image: url('../assets/images/chitty-chat.png');
+  background-image: url('https://placehold.it/150x150');
 }
 
 .project-4 {
-  background-image: url('../assets/images/jquery-snake.png');
+  background-image: url('https://placehold.it/150x150');
 }
 
 .project-nav {
@@ -423,7 +423,7 @@ a {
 .contact-container-overlay {
   opacity: 50%;
   background-size: cover;
-  background-image: url('../assets/images/llama.jpg');
+  background-image: url('https://placehold.it/700x500');
   width: 100%;
   height: calc(100% + 75px);
   position: fixed;

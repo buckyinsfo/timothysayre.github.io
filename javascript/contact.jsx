@@ -1,10 +1,7 @@
-const React = require('react');
-//
-//const sampleText = require('./sampleText');
+import React from 'react';
 
-module.exports = React.createClass({
+class Contact extends React.Component {
   render () {
-
     return (
       <div className="contact-container">
         <div className="contact-box">
@@ -29,4 +26,6 @@ module.exports = React.createClass({
       </div>
     );
   }
-});
+};
+
+export default Contact;
