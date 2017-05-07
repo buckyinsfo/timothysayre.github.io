@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 import Modal from'react-modal';
 import sampleText from'./sampleText';
 
@@ -18,19 +18,19 @@ class Experience extends React.Component {
     }
 
     activeContent () {
-        if (this.state.active == 'resume') {
+        if (this.state.active === 'resume') {
             return this.getModal();
-        } else if (this.state.active == 'technologies') {
+        } else if (this.state.active === 'technologies') {
             return (
                 <pre className="experience-content">
                   <center className="icons">
-                    <img src="assets/icons/git.png" />
-                    <img src="assets/icons/github.png" />
-                    <img src="assets/icons/rails.png" />
-                    <img src="assets/icons/javascript.png" />
-                    <img src="assets/icons/html5.png" />
-                    <img src="assets/icons/css3.png" />
-                    <img src="assets/icons/react.png" /><br />
+                    <img src="assets/icons/git.png" alt="git" />
+                    <img src="assets/icons/github.png" alt="github" />
+                    <img src="assets/icons/rails.png" alt="rails" />
+                    <img src="assets/icons/javascript.png" alt="javascript" />
+                    <img src="assets/icons/html5.png" alt="html5"/>
+                    <img src="assets/icons/css3.png" alt="css3" />
+                    <img src="assets/icons/react.png" alt="react" /><br />
                     <strong>Version Control Systems | </strong> Git / Github / SVN <br /><br />
                     <strong>JavaScript | </strong> JavaScript, React.js, Flux, Redux, Node.js<br /><br />
                     <strong>Languages | </strong> C++, Java, C#, R, Python <br /><br />
@@ -68,7 +68,7 @@ class Experience extends React.Component {
           }
       };
 
-        const loader = (
+/*        const loader = (
             <div className="center-spinner">
               <div className="spinner">
                 <div className="bounce1"></div>
@@ -77,7 +77,7 @@ class Experience extends React.Component {
               </div>
             </div>
         );
-
+*/
     return (
       <Modal
         isOpen={true}
@@ -88,7 +88,7 @@ class Experience extends React.Component {
           <i className="fa fa-times-circle fa-2x" aria-hidden="true"></i>
         </div>
         <div className="modal-content">
-          <img className="resume" src="assets/images/TimothySayre.png"/>
+          <img className="resume" src="assets/images/TimothySayre.png" alt="resume"/>
         </div>
       </Modal>);
   }

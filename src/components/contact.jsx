@@ -19,7 +19,7 @@ class Contact extends React.Component {
               Site written by <strong>Timothy Sayre</strong> using <strong>React.js</strong>.
             </p>
           </div>
-          <div className="up-arrow" onClick={this.props.upArrowClick}>
+          <div className="up-arrow" onClick={ this.props.upArrowClick }>
             <a><i className="fa fa-arrow-circle-up fa-4x"></i></a>
           </div>
         </div>
