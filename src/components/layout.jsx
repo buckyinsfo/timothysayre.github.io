@@ -26,6 +26,11 @@ class Layout extends React.Component {
         window.removeEventListener("resize", this.updateHeight.bind(this));
     }
 
+    logPageView() {
+        ReactGA.set({ page: window.location.pathname + window.location.search });
+        ReactGA.pageview(window.location.pathname + window.location.search);
+    }
+
     onScroll() {
         let newScrollIndex = Math.round(window.scrollY / window.innerHeight);
         this.setState({scrollIndex: newScrollIndex});
