@@ -1,8 +1,8 @@
 {
-  "name": "buckyinsfo.github.io",
+  "name": "timothysayre.github.io",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://buckyinsfo.github.io",
+  "homepage": "https://timothysayre.github.io",
   "dependencies": {
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
