@@ -1,14 +1,9 @@
 import React from 'react';
-//import ReactDOM from 'react-dom';
 import ReactGA from 'react-ga';
-//import Modal from 'react-modal';
 import MainNav from './main_nav';
 import PointNav from './point_nav';
 import Experience from './experience';
-//import Projects from'./projects';
 import Contact from './contact';
-
-ReactGA.initialize('UA-88860508-1'); //Unique Google Analytics tracking number
 
 class Layout extends React.Component {
     constructor(props) {
@@ -19,6 +14,9 @@ class Layout extends React.Component {
     componentDidMount () {
         document.addEventListener('scroll', this.onScroll.bind(this));
         window.addEventListener("resize", this.updateHeight.bind(this));
+
+        ReactGA.initialize('UA-88860508-1'); //Unique Google Analytics tracking number
+        this.logPageView();
     }
 
     componentWillUnMount () {
