@@ -3,7 +3,7 @@ import React from 'react';
 class PointNav extends React.Component {
 
     render () {
-        console.log( 'scroll index' + this.props.scrollIndex );
+
         return(
             <div className="point-nav">
               <div className="point-nav-buttons-background"></div>

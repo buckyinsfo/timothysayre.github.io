@@ -9,7 +9,7 @@ class Contact extends React.Component {
             <h2>CONTACT ME</h2>
             <h3>buckyinsfo@gmail.com</h3>
             <p>
-              I am interested in trading, entrepreneurship, reshoring and fintech.
+              I am interested in trading, IoT, fintech, healthtech, entrepreneurship and reshoring.
               <br />Do you need project management or software engineering for your organization or startup project?
               <br />
               Don't hesitate to reach out! 
