@@ -1,78 +1,76 @@
-import React from 'react';
-//import ReactDOM from 'react-dom';
-import ReactGA from 'react-ga';
-//import Modal from 'react-modal';
-import MainNav from './main_nav';
-import PointNav from './point_nav';
-import Experience from './experience';
-//import Projects from'./projects';
-import Contact from './contact';
+import React from 'react'
+import ReactGA from 'react-ga'
+import MainNav from './main_nav'
+import PointNav from './point_nav'
+import Experience from './experience'
+import Contact from './contact'
 
-ReactGA.initialize('UA-88860508-1'); //Unique Google Analytics tracking number
+ReactGA.initialize('UA-88860508-1') //Unique Google Analytics tracking number
 
 class Layout extends React.Component {
     constructor(props) {
-        super(props);
-        this.state = { scrollIndex: 0, height: 0 };
+        super(props)
+        this.state = { 
+            scrollIndex: 0, 
+            height: 0 
+        }
     }
 
     componentDidMount () {
-        document.addEventListener('scroll', this.onScroll.bind(this));
-        window.addEventListener("resize", this.updateHeight.bind(this));
+        document.addEventListener('scroll', this.onScroll.bind(this))
+        window.addEventListener("resize", this.updateHeight.bind(this))
     }
 
     componentWillUnMount () {
-        document.removeEventListener('scroll', this.onScroll.bind(this));
-        window.removeEventListener("resize", this.updateHeight.bind(this));
+        document.removeEventListener('scroll', this.onScroll.bind(this))
+        window.removeEventListener("resize", this.updateHeight.bind(this))
     }
 
     logPageView() {
-        ReactGA.set({ page: window.location.pathname + window.location.search });
-        ReactGA.pageview(window.location.pathname + window.location.search);
+        ReactGA.set({ page: window.location.pathname + window.location.search })
+        ReactGA.pageview(window.location.pathname + window.location.search)
     }
 
     onScroll() {
-        let newScrollIndex = Math.round(window.scrollY / window.innerHeight);
-        this.setState({scrollIndex: newScrollIndex});
+        let newScrollIndex = Math.round(window.scrollY / window.innerHeight)
+        this.setState({scrollIndex: newScrollIndex})
     }
 
     updateHeight() {
-        this.setState({ height: window.innerHeight });
+        this.setState({ height: window.innerHeight })
     }
 
     setScrollTarget (e) {
-        let siblings = e.currentTarget.parentElement.children;
-        let current = Array.from(siblings).indexOf(e.currentTarget);
-
-        this.scrollTo(current);
+        let siblings = e.currentTarget.parentElement.children
+        let current = Array.from(siblings).indexOf(e.currentTarget)
     }
 
     scrollTo (current) {
-        let scrollHeight = current * window.innerHeight;
+        let scrollHeight = current * window.innerHeight
         if (current === 2) {
-            scrollHeight -= 20;
+            scrollHeight -= 20
         }
 
-        clearInterval(this.scrollIndex);
+        clearInterval(this.scrollIndex)
 
         this.scrollIndex = setInterval( function() {
             if (( window.scrollY > scrollHeight + 10 ) || ( window.scrollY < scrollHeight - 10  )) {
-                const factor = Math.abs(window.scrollY - scrollHeight);
-                   let diff = window.scrollY < scrollHeight ? 2 : -2;
-                if (factor > 50) diff *= 5;
+                const factor = Math.abs(window.scrollY - scrollHeight)
+                   let diff = window.scrollY < scrollHeight ? 2 : -2
+                if (factor > 50) diff *= 5
 
-                const newY = window.scrollY + diff;
-                window.scrollTo(0, newY);
+                const newY = window.scrollY + diff
+                window.scrollTo(0, newY)
             } else {
-                clearInterval(this.scrollIndex);
+                clearInterval(this.scrollIndex)
             }
-        }, 2);
+        }, 2)
 
     }
 
     render () {
 
-        var setScrollTarget = this.setScrollTarget.bind(this);
+        const setScrollTarget = () => this.setScrollTarget()
 
         return(
             <div>
@@ -100,11 +98,11 @@ class Layout extends React.Component {
 
               </div>
             </div>
-        );
+        )
     }
-};
+}
 
-export default Layout;
+export default Layout
 
 
 /*
