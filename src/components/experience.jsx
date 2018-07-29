@@ -24,19 +24,19 @@ class Experience extends React.Component {
             return (
                 <pre className="experience-content">
                   <center className="icons">
-                    <img src="assets/icons/git.png" alt="git" />
-                    <img src="assets/icons/github.png" alt="github" />
-                    <img src="assets/icons/rails.png" alt="rails" />
-                    <img src="assets/icons/javascript.png" alt="javascript" />
+                    <img src="assets/icons/git.png" alt="git"/>
+                    <img src="assets/icons/github.png" alt="github"/>
+                    <img src="assets/icons/rails.png" alt="rails"/>
+                    <img src="assets/icons/javascript.png" alt="javascript"/>
                     <img src="assets/icons/html5.png" alt="html5"/>
-                    <img src="assets/icons/css3.png" alt="css3" />
-                    <img src="assets/icons/react.png" alt="react" /><br />
+                    <img src="assets/icons/css3.png" alt="css3"/>
+                    <img src="assets/icons/react.png" alt="react"/><br />
                     <strong>Version Control Systems | </strong> Git / Github / SVN <br /><br />
                     <strong>JavaScript | </strong> JavaScript, React.js, Flux, Redux, Node.js<br /><br />
                     <strong>Languages | </strong> C++, Java, C#, R, Python <br /><br />
-                    <strong>Testing Frameworks |</strong> RSpec, Capybara, Jest, Jasmine, Mocha<br /><br />
+                    <strong>Testing Frameworks |</strong> Catch, Google Test, Jasmine, Mocha<br /><br />
                     <strong>Web Design |</strong> CSS3, HTML5<br /><br />
-                    <strong>Misc |</strong> CAD, CAM, Matlab <br /><br />
+                    <strong>Misc |</strong> OnShape, CAD, CAM, Matlab<br /><br />
                   </center>
                 </pre>
             );

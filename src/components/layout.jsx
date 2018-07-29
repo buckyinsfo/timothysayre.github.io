@@ -1,29 +1,26 @@
-import React from 'react'
-import ReactGA from 'react-ga'
-import MainNav from './main_nav'
-import PointNav from './point_nav'
-import Experience from './experience'
-import Contact from './contact'
-
-ReactGA.initialize('UA-88860508-1') //Unique Google Analytics tracking number
+import React from 'react';
+import ReactGA from 'react-ga';
+import MainNav from './main_nav';
+import PointNav from './point_nav';
+import Experience from './experience';
+import Contact from './contact';
 
 class Layout extends React.Component {
     constructor(props) {
-        super(props)
-        this.state = { 
-            scrollIndex: 0, 
-            height: 0 
-        }
+        super(props);
+        this.state = { scrollIndex: 0, height: 0 };
+
     }
 
     componentDidMount () {
-        document.addEventListener('scroll', this.onScroll.bind(this))
-        window.addEventListener("resize", this.updateHeight.bind(this))
+        document.addEventListener('scroll', this.onScroll.bind(this));
+
+        ReactGA.initialize('UA-88860508-1'); //Unique Google Analytics tracking number
+        this.logPageView();
     }
 
     componentWillUnMount () {
-        document.removeEventListener('scroll', this.onScroll.bind(this))
-        window.removeEventListener("resize", this.updateHeight.bind(this))
+        document.removeEventListener('scroll', this.onScroll.bind(this));
     }
 
     logPageView() {
@@ -32,8 +29,10 @@ class Layout extends React.Component {
     }
 
     onScroll() {
-        let newScrollIndex = Math.round(window.scrollY / window.innerHeight)
-        this.setState({scrollIndex: newScrollIndex})
+        let newScrollIndex = Math.round(window.scrollY / window.innerHeight);
+        this.setState({scrollIndex: newScrollIndex});
+
+        console.log( "I'm scrolling now.  Y-coord: " + window.scrollY );
     }
 
     updateHeight() {
@@ -41,36 +40,43 @@ class Layout extends React.Component {
     }
 
     setScrollTarget (e) {
-        let siblings = e.currentTarget.parentElement.children
-        let current = Array.from(siblings).indexOf(e.currentTarget)
+        let siblings = e.currentTarget.parentElement.children;
+        let target = Array.from(siblings).indexOf(e.currentTarget);
+
+        this.startScrollToIndex(target);
     }
 
-    scrollTo (current) {
-        let scrollHeight = current * window.innerHeight
-        if (current === 2) {
-            scrollHeight -= 20
+    startScrollToIndex (target) {
+        let scrollHeight = target * window.innerHeight;
+        if (target === 2) {
+            scrollHeight -= 20;
         }
 
-        clearInterval(this.scrollIndex)
+        clearInterval(this.scrollToIndex);
 
-        this.scrollIndex = setInterval( function() {
-            if (( window.scrollY > scrollHeight + 10 ) || ( window.scrollY < scrollHeight - 10  )) {
-                const factor = Math.abs(window.scrollY - scrollHeight)
-                   let diff = window.scrollY < scrollHeight ? 2 : -2
-                if (factor > 50) diff *= 5
+        this.scrollToIndex = setInterval( this.autoScrollToHt.bind( this, scrollHeight ), 2);
+    }
 
-                const newY = window.scrollY + diff
-                window.scrollTo(0, newY)
-            } else {
-                clearInterval(this.scrollIndex)
-            }
-        }, 2)
+    autoScrollToHt( scrollHeight ) {
+        let v_offset = 10;
 
+        if (( window.scrollY > scrollHeight + v_offset ) || ( window.scrollY < scrollHeight - v_offset  )) {
+            const factor = Math.abs(window.scrollY - scrollHeight);
+
+            let diff = window.scrollY < scrollHeight ? 2 : -2;
+            if (factor > 50) diff *= 5;
+
+            const newY = window.scrollY + diff;
+            window.scrollTo(0, newY);
+        } else {
+            clearInterval(this.scrollToIndex);
+        }
     }
 
     render () {
 
-        const setScrollTarget = () => this.setScrollTarget()
+        let setScrollTarget = this.setScrollTarget.bind(this);
+        let scrollToTop = this.startScrollToIndex.bind(this, 0);
 
         return(
             <div>
@@ -85,7 +91,7 @@ class Layout extends React.Component {
                   <h3>Trader, Entrepreneur, Software Engineer and Project Manager.</h3>
                 </div>
                 <div className="down-arrow"
-                      onClick={() => this.scrollTo(1)}>
+                      onClick={() => this.startScrollToIndex(1)}>
                   <a><i className="fa fa-arrow-circle-down fa-4x"></i></a>
                 </div>
               </section>
@@ -93,7 +99,7 @@ class Layout extends React.Component {
                 <Experience />
               </section>
               <section id="contact">
-                  <Contact upArrowClick={() => this.scrollTo(0)}/>
+                  <Contact upArrowClick={scrollToTop}/>
               </section>
 
               </div>
@@ -102,9 +108,4 @@ class Layout extends React.Component {
     }
 }
 
-export default Layout
-
-
-/*
-
- */
+export default Layout;
