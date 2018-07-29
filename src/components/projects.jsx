@@ -1,49 +1,49 @@
-import React from 'react';
-import sampleText from './sampleText';
+import React from 'react'
+import sampleText from './sampleText'
 
 class Projects extends React.Component {
     constructor(props) {
-        super(props);
-        this.state = {focus: 0};
+        super(props)
+        this.state = {focus: 0}
     }
 
     componentDidMount() {
-        this.resumeInterval();
+        this.resumeInterval()
         addEventListener('resize', () => {
             if (window.innerWidth > 800) {
-                this.resumeInterval();
+                this.resumeInterval()
             } else {
-                this.arrestInterval();
-                this.setState({focused: 0});
+                this.arrestInterval()
+                this.setState({focused: 0})
             }
-        });
+        })
     }
 
     arrestInterval() {
-        clearInterval(this.interval);
-        this.interval = undefined;
+        clearInterval(this.interval)
+        this.interval = undefined
     }
 
     resumeInterval() {
         if (!this.interval && window.innerWidth > 800) {
-            this.interval = setInterval(() => this.onRightArrow(), 3000);
+            this.interval = setInterval(() => this.onRightArrow(), 3000)
         }
     }
 
     componentWillUnmount() {
-        this.arrestInterval();
+        this.arrestInterval()
     }
 
     onRightArrow() {
-        this.setState({focused: (this.state.focused + 1) % 4});
+        this.setState({focused: (this.state.focused + 1) % 4})
     }
 
     onLeftArrow() {
-        this.setState({focused: (this.state.focused - 1 + 4) % 4});
+        this.setState({focused: (this.state.focused - 1 + 4) % 4})
     }
 
     getSliderStyle() {
-        return {marginLeft: -(this.state.focused * window.innerWidth * 0.62)};
+        return {marginLeft: -(this.state.focused * window.innerWidth * 0.62)}
     }
 
     render() {
@@ -83,7 +83,7 @@ class Projects extends React.Component {
                                         <a href="https://miniframe.herokuapp.com/" alt="See it live!" target="_blank">
                                             <i className="fa fa-external-link fa-4x" aria-hidden="true"></i>
                                         </a>
-                                    </div>
+                                    </div>`
                                 </div>
                             </div>
 
@@ -98,9 +98,8 @@ class Projects extends React.Component {
                          onClick={() => this.setState({focused: 0})}/>
                 </div>
             </div>
-        );
+        )
     }
 }
-;
 
-export default Projects;
+export default Projects

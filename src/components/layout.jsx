@@ -1,87 +1,90 @@
-import React from 'react';
-import ReactGA from 'react-ga';
-import MainNav from './main_nav';
-import PointNav from './point_nav';
-import Experience from './experience';
-import Contact from './contact';
+import React from 'react'
+import ReactGA from 'react-ga'
+import MainNav from './main_nav'
+import PointNav from './point_nav'
+import Experience from './experience'
+import Contact from './contact'
 
 class Layout extends React.Component {
     constructor(props) {
-        super(props);
-        this.state = { scrollIndex: 0, height: 0 };
-
+        super(props)
+        this.state = { 
+            scrollIndex: 0,
+            scrollHeight: 0,
+            timerId: null,
+        }
     }
 
     componentDidMount () {
-        document.addEventListener('scroll', this.onScroll.bind(this));
+        document.addEventListener('scroll', this.onScroll)
 
-        ReactGA.initialize('UA-88860508-1'); //Unique Google Analytics tracking number
-        this.logPageView();
+        ReactGA.initialize('UA-88860508-1') //Unique Google Analytics tracking number
+        this.logPageView()
     }
 
     componentWillUnMount () {
-        document.removeEventListener('scroll', this.onScroll.bind(this));
+        document.removeEventListener('scroll', this.onScroll)
     }
 
-    logPageView() {
+    logPageView = () => {
         ReactGA.set({ page: window.location.pathname + window.location.search })
         ReactGA.pageview(window.location.pathname + window.location.search)
     }
 
-    onScroll() {
-        let newScrollIndex = Math.round(window.scrollY / window.innerHeight);
-        this.setState({scrollIndex: newScrollIndex});
-
-        console.log( "I'm scrolling now.  Y-coord: " + window.scrollY );
+    onScroll = () => {
+        // Update the index on the point_nav component.
+        const newScrollIndex = Math.round(window.scrollY / window.innerHeight)
+        this.setState({scrollIndex: newScrollIndex})
     }
 
-    updateHeight() {
-        this.setState({ height: window.innerHeight })
+    setScrollTarget = (ev) => {
+        console.log( ev )
+        const siblings = ev.currentTarget.parentElement.children
+        const index = Array.from(siblings).indexOf(ev.currentTarget)
+
+        this.startScrollToIndex(index)
     }
 
-    setScrollTarget (e) {
-        let siblings = e.currentTarget.parentElement.children;
-        let target = Array.from(siblings).indexOf(e.currentTarget);
-
-        this.startScrollToIndex(target);
-    }
-
-    startScrollToIndex (target) {
-        let scrollHeight = target * window.innerHeight;
-        if (target === 2) {
-            scrollHeight -= 20;
+    startScrollToIndex = ( index ) => {
+        let scrollHeight = index * window.innerHeight
+        if (index === 2) {
+            scrollHeight -= 20
         }
 
-        clearInterval(this.scrollToIndex);
+        clearInterval( this.state.timerId )
 
-        this.scrollToIndex = setInterval( this.autoScrollToHt.bind( this, scrollHeight ), 2);
+        this.setState({ scrollHeight: scrollHeight })
+
+        const id = setInterval( this.autoScrollToHt, 2)
+        this.setState({ timerId: id })
     }
 
-    autoScrollToHt( scrollHeight ) {
-        let v_offset = 10;
+    autoScrollToHt = ( ) => {
+        const v_offset = 10
 
-        if (( window.scrollY > scrollHeight + v_offset ) || ( window.scrollY < scrollHeight - v_offset  )) {
-            const factor = Math.abs(window.scrollY - scrollHeight);
+        if (( window.scrollY > this.state.scrollHeight + v_offset ) || ( window.scrollY < this.state.scrollHeight - v_offset  )) {
+            const factor = Math.abs(window.scrollY - this.state.scrollHeight)
 
-            let diff = window.scrollY < scrollHeight ? 2 : -2;
-            if (factor > 50) diff *= 5;
+            let diff = window.scrollY < this.state.scrollHeight ? 2 : -2
+            if ( factor > 50 ) {
+                diff *= 5
+            }
 
-            const newY = window.scrollY + diff;
-            window.scrollTo(0, newY);
+            const newY = window.scrollY + diff
+            console.log( 'NewY = ' + newY )
+            window.scrollTo(0, newY)
         } else {
-            clearInterval(this.scrollToIndex);
+            console.log( 'Stopping timer' )
+            clearInterval( this.state.timerId )
         }
     }
 
     render () {
 
-        let setScrollTarget = this.setScrollTarget.bind(this);
-        let scrollToTop = this.startScrollToIndex.bind(this, 0);
-
         return(
             <div>
-              <MainNav height={this.state.height} />
-              <PointNav setScrollTarget={setScrollTarget}
+              <MainNav />
+              <PointNav setScrollTarget={ this.setScrollTarget }
                         scrollIndex={this.state.scrollIndex} />
               <div>
               < section id="main-banner">
@@ -99,7 +102,7 @@ class Layout extends React.Component {
                 <Experience />
               </section>
               <section id="contact">
-                  <Contact upArrowClick={scrollToTop}/>
+                  <Contact upArrowClick={ this.startScrollToIndex } />
               </section>
 
               </div>
@@ -108,4 +111,4 @@ class Layout extends React.Component {
     }
 }
 
-export default Layout;
+export default Layout
