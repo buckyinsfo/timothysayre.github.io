@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactGA from 'react-ga'
-import MainNav from './main_nav'
+import MainNav from './main-nav'
 import PointNav from './point_nav'
 import Experience from './experience'
 import Contact from './contact'
