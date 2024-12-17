@@ -1,132 +1,115 @@
-import React from 'react'
-import Modal from 'react-modal'
-import sampleText from './sampleText'
+import React, { useState } from 'react';
+import Modal from 'react-modal';
+import sampleText from './sampleText';
 
-class Experience extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = { active: 'summary' }
-    }
+Modal.setAppElement('#root'); // Required for accessibility
 
-    setActive = (category) => {
-        this.setState({ active: category })
-    }
+const Experience = () => {
+    const [active, setActive] = useState('summary');
 
-    isActive = (category) => {
-        return this.state.active === category ? 'active' : ''
-    }
+    const isActive = (category) => active === category ? 'active' : '';
 
-    activeContent = () => {
-        if (this.state.active === 'resume') {
-            return this.getModal()
-        } else if (this.state.active === 'technologies') {
-            return (
-                <pre className="experience-content">
-                    <center className="icons">
-                        <img src="assets/icons/git.png" alt="git" />
-                        <img src="assets/icons/github.png" alt="github" />
-                        <img src="assets/icons/rails.png" alt="rails" />
-                        <img src="assets/icons/javascript.png" alt="javascript" />
-                        <img src="assets/icons/html5.png" alt="html5" />
-                        <img src="assets/icons/css3.png" alt="css3" />
-                        <img src="assets/icons/react.png" alt="react" /><br />
-                        <strong>Version Control Systems | </strong> Git / Github / SVN <br /><br />
-                        <strong>JavaScript | </strong> JavaScript, React.js, Flux, Redux, Node.js<br /><br />
-                        <strong>Languages | </strong> C++, Java, C#, R, Python <br /><br />
-                        <strong>Testing Frameworks |</strong> Catch, Google Test, Jasmine, Mocha<br /><br />
-                        <strong>Web Design |</strong> CSS3, HTML5<br /><br />
-                        <strong>Misc |</strong> OnShape, CAD, CAM, Matlab<br /><br />
-                    </center>
-                </pre>
-            )
-        } else {
-            return (
-                <pre className="experience-content">
-                    {sampleText[this.state.active]}
-                </pre>
-            )
+    const modalStyle = {
+        overlay: {
+            position: 'fixed',
+            backgroundColor: 'rgba(255, 255, 255, 0.75)',
+            zIndex: 55,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+        },
+        content: {
+            left: 'auto',
+            right: 'auto',
+            padding: 0,
+            overflowY: 'hidden',
+            overflowX: 'hidden'
         }
-    }
+    };
 
-    getModal() {
-        let modalStyle = {
-            overlay: {
-                position: 'fixed',
-                backgroundColor: 'rgba(255, 255, 255, 0.75)',
-                zIndex: 55,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-            },
-            content: {
-                left: 'auto',
-                right: 'auto',
-                padding: 0,
-                overflowY: 'hidden',
-                overflowX: 'hidden'
-            }
-        }
-        /*
-                const loader = () => {
-                    return (
-                        <div className="center-spinner">
-                            <div className="spinner">
-                                <div className="bounce1"></div>
-                                <div className="bounce2"></div>
-                                <div className="bounce3"></div>
-                            </div>
-                        </div>
-                    )
-                }
-        */
-        return (
-            <Modal
-                isOpen={true}
-                style={modalStyle}
-                onRequestClose={() => this.setState({ active: 'summary' })}>
-                <div className="x-button"
-                    onClick={() => this.setState({ active: 'summary' })}>
-                    <i className="fa fa-times-circle fa-2x" aria-hidden="true"></i>
-                </div>
-                <div className="modal-content">
-                    <img className="resume" src="assets/images/TimothySayre.png" alt="resume" />
-                </div>
-            </Modal>)
-    }
-
-    render() {
-        return (
-            <div className="experience">
-                <div className="experience-circles">
-                    <div className={"circle " + this.isActive('summary')}
-                        onClick={() => this.setActive('summary')}>
-                        <div className="text-uppercase">
-                            about me
-                  </div>
-                    </div>
-                    <div className={"circle " + this.isActive('resume')}
-                        onClick={() => this.setActive('resume')}>
-                        <div className="text-uppercase">
-                            resume
-                  </div>
-                    </div>
-                    <div className={"circle " + this.isActive('projects')}
-                        onClick={() => this.setActive('projects')}>
-                        <div className="text-uppercase">
-                            projects
-                  </div>
-                    </div>
-                    <div className={"circle " + this.isActive('technologies')}
-                        onClick={() => this.setActive('technologies')}>
-                        <div className="text-uppercase">
-                            skills
-                  </div>
-                    </div>
-                </div>
-                {this.activeContent()}
+    const ResumeModal = () => (
+        <Modal
+            isOpen={true}
+            style={modalStyle}
+            onRequestClose={() => setActive('summary')}
+            contentLabel="Resume"
+        >
+            <button 
+                className="x-button"
+                onClick={() => setActive('summary')}
+                aria-label="Close resume"
+            >
+                <i className="fa fa-times-circle fa-2x" aria-hidden="true"></i>
+            </button>
+            <div className="modal-content">
+                <img 
+                    className="resume" 
+                    src="assets/images/TimothySayre.png" 
+                    alt="Timothy Sayre's Resume" 
+                />
             </div>
-        )
-    }
-}
+        </Modal>
+    );
 
-export default Experience
+    const TechnologiesContent = () => (
+        <pre className="experience-content">
+            <div className="icons text-center">
+                <img src="assets/icons/git.png" alt="Git" />
+                <img src="assets/icons/github.png" alt="GitHub" />
+                <img src="assets/icons/rails.png" alt="Ruby on Rails" />
+                <img src="assets/icons/javascript.png" alt="JavaScript" />
+                <img src="assets/icons/html5.png" alt="HTML5" />
+                <img src="assets/icons/css3.png" alt="CSS3" />
+                <img src="assets/icons/react.png" alt="React" />
+                <br />
+                <strong>Version Control Systems | </strong> Git / Github / SVN <br /><br />
+                <strong>JavaScript | </strong> JavaScript, React.js, Flux, Redux, Node.js<br /><br />
+                <strong>Languages | </strong> C++, Java, C#, R, Python <br /><br />
+                <strong>Testing Frameworks | </strong> Catch, Google Test, Jasmine, Mocha<br /><br />
+                <strong>Web Design | </strong> CSS3, HTML5<br /><br />
+                <strong>Misc | </strong> OnShape, CAD, CAM, Matlab<br /><br />
+            </div>
+        </pre>
+    );
+
+    const renderContent = () => {
+        switch (active) {
+            case 'resume':
+                return <ResumeModal />;
+            case 'technologies':
+                return <TechnologiesContent />;
+            default:
+                return (
+                    <pre className="experience-content">
+                        {sampleText[active]}
+                    </pre>
+                );
+        }
+    };
+
+    return (
+        <div className="experience">
+            <div className="experience-circles">
+                {[
+                    { id: 'summary', label: 'about me' },
+                    { id: 'resume', label: 'resume' },
+                    { id: 'projects', label: 'projects' },
+                    { id: 'technologies', label: 'skills' }
+                ].map(({ id, label }) => (
+                    <button
+                        key={id}
+                        className={`circle ${isActive(id)}`}
+                        onClick={() => setActive(id)}
+                    >
+                        <div className="text-uppercase">
+                            {label}
+                        </div>
+                    </button>
+                ))}
+            </div>
+            {renderContent()}
+        </div>
+    );
+};
+
+export default Experience;

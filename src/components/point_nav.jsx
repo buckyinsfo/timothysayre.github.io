@@ -20,6 +20,12 @@ const PointNav = ({ setScrollTarget, scrollIndex }) => {
 
           <a onClick={setScrollTarget}
                   className={scrollIndex === 2 ? 'active' : ''}>
+            <i className="fa fa-book fa-2x"></i>
+            <p>Guides</p>
+          </a>
+
+          <a onClick={setScrollTarget}
+                  className={scrollIndex === 3 ? 'active' : ''}>
             <i className="fa fa-info fa-2x"></i>
             <p>Contact</p>
           </a>
