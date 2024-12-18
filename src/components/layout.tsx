@@ -30,6 +30,12 @@ const MainBanner = styled(Section)`
   justify-content: center;
   align-items: center;
   text-align: center;
+  background-image: url("/assets/images/mountains.jpg");
+  background-size: cover; /* Ensures the image covers the entire area */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents tiling */
+  position: relative;
+  height: 100vh; /* Full viewport height */
 `;
 
 const BannerOverlay = styled.div`
@@ -163,9 +169,7 @@ const Layout: React.FC = () => {
           <BannerOverlay />
           <MainDescription>
             <h1>TIMOTHY SAYRE</h1>
-            <h3>
-              Trader, Entrepreneur, Software Engineer and Project Manager.
-            </h3>
+            <h3>Trader, Entrepreneur, Software Engineer, Project Manager.</h3>
           </MainDescription>
           <DownArrow onClick={() => startScrollToIndex(1)}>
             <FontAwesomeIcon icon={faArrowCircleDown} size="4x" />
