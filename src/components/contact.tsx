@@ -80,7 +80,7 @@ interface ContactProps {
 
 const Contact: React.FC<ContactProps> = ({ upArrowClick }) => {
   const scrollToTop = () => {
-    upArrowClick(1);
+    upArrowClick(0);
   };
 
   return (
