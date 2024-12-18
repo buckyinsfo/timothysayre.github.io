@@ -19,7 +19,7 @@ const Contact = ({ upArrowClick }) => {
                         </a>
                     </h3>
                     <p>
-                        I am interested in trading, IoT, fintech, healthtech, entrepreneurship and reshoring.
+                        I am interested in trading, IoT, fintech, healthtech, entrepreneurship and microenterprises.
                         <br />
                         Do you need project management or software engineering for your organization or startup project?
                         <br />
