@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
-import GuideDisplay from "./guides/guide-display";
+import GuideDisplay from "./guide-display";
 
 interface Guide {
   id: string;
