@@ -25,7 +25,7 @@ const Logo = styled.div`
     text-decoration: none;
     color: inherit;
     &:hover {
-      color: grey;
+      color: darkgray;
       transition: color 0.25s linear;
     }
   }
@@ -38,7 +38,7 @@ const NavButtons = styled.div`
     text-decoration: none;
 
     &:hover {
-      color: grey;
+      color: darkgray;
       transition: color 0.25s linear;
     }
 

@@ -11,13 +11,13 @@ import {
 
 // Types
 interface NavItem {
-  icon: any; // FontAwesome icon
+  icon: any;
   text: string;
   index: number;
 }
 
 interface PointNavProps {
-  setScrollTarget: (event: React.MouseEvent) => void;
+  setScrollTarget: (event: React.MouseEvent<Element, MouseEvent>) => void;
   scrollIndex: number;
   position?: "left" | "right";
   spacing?: number;
@@ -50,7 +50,6 @@ const fadeIn = keyframes`
   }
 `;
 
-// Styled Components
 const NavContainer = styled.div<StyledNavProps>`
   position: fixed;
   ${(props) => props.position}: ${(props) => props.spacing}px;
@@ -58,13 +57,44 @@ const NavContainer = styled.div<StyledNavProps>`
   transform: translateY(-50%);
   z-index: 50;
   animation: ${fadeIn} 0.5s ease-out;
-  padding: 0.5rem;
 `;
 
 const NavButtons = styled.nav`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 24px;
+  justify-content: center;
+  position: relative;
+`;
+
+const CircleWrapper = styled.div<{ isActive: boolean }>`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${(props) => (props.isActive ? "#000" : "transparent")};
+  color: ${(props) => (props.isActive ? "#fff" : "inherit")};
+  margin: 0.5rem;
+
+  &:focus {
+    outline: none;
+  }
+  &:focus-visible {
+    outline: none;
+  }
+`;
+
+const Line = styled.div`
+  position: absolute;
+  width: 2px;
+  height: 24px;
+  background-color: #000;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -24px;
 `;
 
 const NavItem = styled.a<NavItemProps>`
@@ -73,37 +103,23 @@ const NavItem = styled.a<NavItemProps>`
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 0.5rem;
-  transition: color 0.3s ease;
+  color: ${(props) => props.inactiveColor};
   text-decoration: none;
+  transition: color 0.3s ease;
 
-  svg {
-    transition: transform 0.3s ease;
-    font-size: 2rem;
+  &:focus {
+    outline: none;
   }
-
-  &:hover {
-    color: ${(props) => props.activeColor};
-
-    svg {
-      transform: scale(1.1);
-    }
-
-    p {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  &:focus-visible {
+    outline: none;
   }
 
   p {
     margin: 0;
     font-size: 0.8rem;
     opacity: ${(props) => (props.isActive ? 1 : 0)};
-    transition: all 0.3s ease;
     position: absolute;
     top: 50%;
-    color: ${(props) =>
-      props.isActive ? props.activeColor : props.inactiveColor};
     transform: translateY(-50%)
       translateX(${(props) => (props.isActive ? "0" : "20px")});
     ${(props) =>
@@ -112,10 +128,7 @@ const NavItem = styled.a<NavItemProps>`
         : "right: calc(100% + 10px);"}
     white-space: nowrap;
     font-weight: ${(props) => (props.isActive ? "bold" : "normal")};
-  }
-
-  :focus {
-    outline: none;
+    transition: all 0.3s ease;
   }
 `;
 
@@ -138,7 +151,7 @@ const PointNav: React.FC<PointNavProps> = ({
   return (
     <NavContainer position={position} spacing={spacing}>
       <NavButtons>
-        {navItems.map((item) => (
+        {navItems.map((item, index) => (
           <NavItem
             key={item.text}
             onClick={setScrollTarget}
@@ -150,7 +163,10 @@ const PointNav: React.FC<PointNavProps> = ({
             aria-label={`Navigate to ${item.text}`}
             tabIndex={0}
           >
-            <FontAwesomeIcon icon={item.icon} />
+            <CircleWrapper isActive={scrollIndex === item.index}>
+              <FontAwesomeIcon icon={item.icon} size="2x" />
+            </CircleWrapper>
+            {index < navItems.length - 1 && <Line />}
             <p>{item.text}</p>
           </NavItem>
         ))}
