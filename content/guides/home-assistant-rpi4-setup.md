@@ -3,6 +3,7 @@
 This guide provides step-by-step instructions for setting up Home Assistant on a Raspberry Pi 4 Model B using a 128GB USB stick and Docker.
 
 ## Prerequisites
+
 - Raspberry Pi 4 Model B
 - 128GB USB stick
 - Power supply for Raspberry Pi
@@ -16,8 +17,8 @@ This guide provides step-by-step instructions for setting up Home Assistant on a
 3. Open Raspberry Pi Imager and configure:
    - **Choose OS**: Select "Raspberry Pi OS Lite (64-bit)"
    - **Choose Storage**: Select your 128GB USB stick
-   - Click the ⚙️ (Advanced Options) icon and set:
-     - Hostname: `homeassistantpi` (or preferred name)
+   - Click the ⚙️ (Advanced Options) icon or press ctrl-shift 'x' and set:
+     - Hostname: `homeassistantpi` (or your preferred name)
      - Enable SSH with password authentication
      - Username and password (e.g., `pi` / `your-secure-password`)
      - Configure wireless network (if not using Ethernet)
@@ -28,6 +29,7 @@ This guide provides step-by-step instructions for setting up Home Assistant on a
 
 1. Find your Pi's IP address (check router or use `hostname -I` if connected to a display)
 2. SSH into the Pi:
+
 ```bash
 ssh pi@homeassistantpi.local
 # Or use the IP address:
@@ -37,6 +39,7 @@ ssh pi@<Raspberry_Pi_IP>
 ## 3. Update the System
 
 Update and upgrade all packages:
+
 ```bash
 sudo apt update && sudo apt upgrade -y
 ```
@@ -44,16 +47,19 @@ sudo apt update && sudo apt upgrade -y
 ## 4. Install Docker
 
 1. Install Docker using the official script:
+
 ```bash
 curl -fsSL https://get.docker.com | sh
 ```
 
 2. Add your user to the Docker group:
+
 ```bash
 sudo usermod -aG docker $USER
 ```
 
 3. Log out and back in for changes to take effect:
+
 ```bash
 logout
 ```
@@ -61,11 +67,13 @@ logout
 ## 5. Prepare Home Assistant
 
 1. Create the configuration directory:
+
 ```bash
 mkdir -p ~/homeassistant
 ```
 
 2. Pull the Home Assistant Docker image:
+
 ```bash
 docker pull ghcr.io/home-assistant/home-assistant:latest
 ```
@@ -73,6 +81,7 @@ docker pull ghcr.io/home-assistant/home-assistant:latest
 ## 6. Run Home Assistant
 
 Start the Home Assistant container:
+
 ```bash
 docker run -d \
   --name homeassistant \
@@ -98,11 +107,13 @@ docker run -d \
 Test that Home Assistant automatically restarts after a system reboot:
 
 1. Reboot the Raspberry Pi:
+
 ```bash
 sudo reboot
 ```
 
 2. Wait for the system to restart, then SSH back in and verify the container is running:
+
 ```bash
 docker ps
 ```
@@ -110,6 +121,7 @@ docker ps
 ## 9. Updating Home Assistant
 
 To update to the latest version:
+
 ```bash
 docker pull ghcr.io/home-assistant/home-assistant:latest
 docker stop homeassistant
@@ -122,6 +134,20 @@ docker run -d \
   --network=host \
   ghcr.io/home-assistant/home-assistant:latest
 ```
+
+## 10. Install the Heatsink Kit on Raspberry Pi 4
+
+<div style="text-align: left; padding: 50px">
+    <strong>Three installed on top</strong><br/>
+    <a href="../../assets/images/RPiHeatSink_0.jpg" target="_blank">
+        <img src="../../assets/images/RPiHeatSink_0.jpg" alt="Three installed on top" title="Three installed on top as shown" width="200"/>
+    </a>
+    <br/><br/>
+    <strong>One installed on bottom</strong><br/>
+    <a href="../../assets/images/RPiHeatSink_1.jpg" target="_blank">
+        <img src="../../assets/images/RPiHeatSink_1.jpg" alt="One installed on bottom" title="One installed on the bottom as shown" width="200"/>
+    </a>
+</div>
 
 ## Troubleshooting
 
