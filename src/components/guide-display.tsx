@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import styled from '@emotion/styled';
-import ReactMarkdown from 'react-markdown';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCopy, faCheck } from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from "react";
+import styled from "@emotion/styled";
+import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCopy, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 interface GuideDisplayProps {
   content: string;
@@ -29,7 +30,7 @@ const GuideContainer = styled.div`
   padding: 2rem;
   background: white;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 const GuideHeader = styled.div`
@@ -117,21 +118,29 @@ const CopyButton = styled.button`
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
   }
 `;
 
-const CustomPre: React.FC<React.ComponentProps<'pre'>> = (props) => {
+const CustomImage: React.FC<React.ComponentProps<"img">> = (props) => {
+  // Transform relative image paths to your public assets
+  const src = props.src?.replace("../../assets/images/", "/assets/images/");
+  return (
+    <img {...props} src={src} style={{ maxWidth: "100%", height: "auto" }} />
+  );
+};
+
+const CustomPre: React.FC<React.ComponentProps<"pre">> = (props) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
     // Extract text content from the code block
     const codeElement = props.children as React.ReactElement;
-    const textContent = codeElement?.props?.children || '';
-    
+    const textContent = codeElement?.props?.children || "";
+
     // Handle both string and array of strings
-    const plainText = Array.isArray(textContent) 
-      ? textContent.join('\n') 
+    const plainText = Array.isArray(textContent)
+      ? textContent.join("\n")
       : textContent;
 
     navigator.clipboard.writeText(plainText).then(() => {
@@ -144,7 +153,7 @@ const CustomPre: React.FC<React.ComponentProps<'pre'>> = (props) => {
     <CodeBlock>
       <CopyButton onClick={handleCopy} type="button">
         <FontAwesomeIcon icon={copied ? faCheck : faCopy} />
-        {copied ? 'Copied!' : 'Copy'}
+        {copied ? "Copied!" : "Copy"}
       </CopyButton>
       <pre {...props} />
     </CodeBlock>
@@ -160,14 +169,16 @@ const GuideDisplay: React.FC<GuideDisplayProps> = ({ content, onBack }) => {
 
   return (
     <Overlay onClick={handleOverlayClick}>
-      <GuideContainer onClick={e => e.stopPropagation()}>
+      <GuideContainer onClick={(e) => e.stopPropagation()}>
         <GuideHeader>
           <BackButton onClick={onBack}>← Back to Guides</BackButton>
         </GuideHeader>
         <GuideContent>
           <ReactMarkdown
+            rehypePlugins={[rehypeRaw]}
             components={{
-              pre: CustomPre
+              pre: CustomPre,
+              img: CustomImage,
             }}
           >
             {content}
