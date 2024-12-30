@@ -172,7 +172,7 @@ cd ~/Documents
 2. Pull the Docker Compose file down.
 
 ```bash
-curl https://www.timothysayre.com/assets/code/compose.yml
+curl -O https://www.timothysayre.com/assets/code/compose.yml
 ```
 
 3. Discover where the Conbee III is attached:
