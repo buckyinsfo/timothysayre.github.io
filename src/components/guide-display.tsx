@@ -136,7 +136,7 @@ const CustomPre: React.FC<React.ComponentProps<"pre">> = (props) => {
   const handleCopy = () => {
     // Extract text content from the code block
     const codeElement = props.children as React.ReactElement;
-    const textContent = codeElement?.props?.children || "";
+    const textContent = (codeElement?.props as any)?.children || "";
 
     // Handle both string and array of strings
     const plainText = Array.isArray(textContent)

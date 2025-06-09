@@ -4,7 +4,7 @@ import ReactGA from 'react-ga4';
 export const initGA = () => {
   // Replace 'G-XXXXXXXXXX' with your actual GA4 Measurement ID
   ReactGA.initialize('G-XXXXXXXXXX', {
-    debug: process.env.NODE_ENV === 'development', // Enable debug mode in development
+    testMode: process.env.NODE_ENV === 'development', // Enable test mode in development
   });
 };
 

@@ -101,9 +101,9 @@ class Projects extends Component<{}, ProjectsState> {
       };
     }
     // Fallback to original calculation
-    // return {
-    //   marginLeft: -(this.state.focused * window.innerWidth * 0.62)
-    // };
+    return {
+      marginLeft: -(this.state.focused * window.innerWidth * 0.62)
+    };
   }
 
   render() {

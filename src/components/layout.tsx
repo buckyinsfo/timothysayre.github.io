@@ -77,7 +77,7 @@ const DownArrow = styled.div`
 
 const Layout: React.FC = () => {
   const [scrollIndex, setScrollIndex] = useState(0);
-  const [targetScrollHeight, setTargetScrollHeight] = useState(0);
+  const [, setTargetScrollHeight] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
   const [animationFrameId, setAnimationFrameId] = useState<number | null>(null);
 

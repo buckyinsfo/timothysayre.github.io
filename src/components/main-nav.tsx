@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLinkedin,
   faGithub,
-  faTumblr,
   faXTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 
