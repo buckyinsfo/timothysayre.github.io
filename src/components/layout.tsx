@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowCircleDown } from "@fortawesome/free-solid-svg-icons";
 import MainNav from "./main-nav";
@@ -95,8 +95,11 @@ const Layout: React.FC = () => {
   }, []);
 
   const logPageView = () => {
-    ReactGA.set({ page: window.location.pathname + window.location.search });
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    ReactGA.gtag('config', 'UA-88860508-1', {
+      page_title: document.title,
+      page_location: window.location.href,
+      page_path: window.location.pathname + window.location.search
+    });
   };
 
   const onScroll = () => {
