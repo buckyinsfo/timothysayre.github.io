@@ -76,11 +76,11 @@ const guides: Guide[] = [
     date: "September 26, 2024",
   },
   {
-    id: "home-assistant-rpi4-setup",
+    id: "home-assistant-rpi4-setup1",
     title: "Home Assistant on Raspberry Pi 4",
     description:
       "Step-by-step guide for setting up Home Assistant using Docker on a Raspberry Pi 4.",
-    date: "December 16, 2024",
+    date: "December 29, 2024",
   },
 ];
 
