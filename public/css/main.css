@@ -264,6 +264,59 @@ a {
 
 /* Projects */
 
+/* When projects are shown in the experience section */
+.experience .project-container-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+  margin: 50px auto 0 auto;
+  padding: 0 20px;
+}
+
+.experience .project-container {
+  height: 65vh;
+  min-height: 350px;
+  width: calc(100% - 120px);
+  overflow: hidden;
+  flex: 1;
+  margin: 0 20px;
+}
+
+.experience .project-overlay {
+  padding: 20px;
+}
+
+.experience .project-overlay h1 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.experience .project-overlay p {
+  font-size: 16px;
+  font-weight: 600;
+  padding-bottom: 15px;
+  line-height: 1.4;
+}
+
+.experience .project-slider {
+  margin-left: 0;
+  transition: margin-left 0.5s linear;
+  position: relative;
+  width: 400%; /* 4 projects at 100% each */
+}
+
+.experience .project {
+  background-image: url('https://placehold.it/700x500');
+  background-size: cover;
+  height: 65vh;
+  min-height: 350px;
+  width: 25%; /* Each project takes 25% of the slider width */
+  display: inline-block;
+}
+
+/* Standalone projects section */
 .project-container-container {
   display: flex;
   align-items: center;
@@ -327,7 +380,7 @@ a {
   width: 300px;
   justify-content: space-around;
   align-items: center;
-  margin: auto;
+  margin: 20px auto;
 }
 
 .project-nav-button {
@@ -374,6 +427,14 @@ a {
   visibility: visible;
   background: rgba(255, 255, 255, 0.9);
 }
+
+/* Guides */
+
+/* #guides {
+  padding-top: 20px;
+  align-items: flex-start;
+  justify-content: flex-start;
+} */
 
 /* Contact */
 

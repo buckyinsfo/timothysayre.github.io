@@ -4,6 +4,8 @@ import styled from '@emotion/styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import sampleText from './sampleText';
+import Projects from './projects';
+import { trackPortfolioEvent } from '../utils/analytics';
 
 Modal.setAppElement('#root');
 
@@ -89,32 +91,33 @@ const typedSampleText = sampleText as SampleTextType;
 const Experience: React.FC<ExperienceProps> = () => {
   const [active, setActive] = useState<ActiveTab>('summary');
 
-  const ResumeModal = () => (
-    <Modal
-      isOpen={true}
-      style={modalStyle}
-      onRequestClose={() => setActive('summary')}
-      contentLabel="Resume"
-    >
-      <CloseButton
-        onClick={() => setActive('summary')}
-        aria-label="Close resume"
-      >
-        <FontAwesomeIcon icon={faTimes} size="2x" />
-      </CloseButton>
-      <PDFContainer>
-        <StyledPDF
-          src="/content/TimothySayre.pdf"
-          title="Timothy Sayre's Resume"
-        />
-      </PDFContainer>
-    </Modal>
-  );
+  const handleCloseModal = () => {
+    setActive('summary');
+    trackPortfolioEvent.viewSection('about'); // Track return to summary
+  };
+
+  const handleTabChange = (tab: ActiveTab) => {
+    setActive(tab);
+    
+    // Track section views
+    switch (tab) {
+      case 'summary':
+        trackPortfolioEvent.viewSection('about');
+        break;
+      case 'resume':
+        trackPortfolioEvent.viewResume();
+        break;
+      case 'projects':
+        trackPortfolioEvent.viewSection('projects');
+        break;
+      case 'technologies':
+        trackPortfolioEvent.viewSection('skills');
+        break;
+    }
+  };
 
   const renderContent = () => {
-    if (active === 'resume') {
-      return <ResumeModal />;
-    } else if (active === 'technologies') {
+    if (active === 'technologies') {
       return (
         <ContentWrapper className="experience-content">
           <div className="icons text-center">
@@ -134,10 +137,13 @@ const Experience: React.FC<ExperienceProps> = () => {
           </div>
         </ContentWrapper>
       );
+    } else if (active === 'projects') {
+      return <Projects />;
     } else {
+      // Default to summary for any other case (including 'summary' and 'resume')
       return (
         <ContentWrapper className="experience-content">
-          {typedSampleText[active]}
+          {typedSampleText.summary}
         </ContentWrapper>
       );
     }
@@ -146,32 +152,63 @@ const Experience: React.FC<ExperienceProps> = () => {
   return (
     <div className="experience">
       <div className="experience-circles">
-        <div className={`circle ${active === 'summary' ? 'active' : ''}`}
-          onClick={() => setActive('summary')}>
+        <div 
+          className={`circle ${active === 'summary' ? 'active' : ''}`}
+          onClick={() => handleTabChange('summary')}
+        >
           <div className="text-uppercase">
             about me
           </div>
         </div>
-        <div className={`circle ${active === 'resume' ? 'active' : ''}`}
-          onClick={() => setActive('resume')}>
+        <div 
+          className={`circle ${active === 'resume' ? 'active' : ''}`}
+          onClick={() => handleTabChange('resume')}
+        >
           <div className="text-uppercase">
             resume
           </div>
         </div>
-        <div className={`circle ${active === 'projects' ? 'active' : ''}`}
-          onClick={() => setActive('projects')}>
+        <div 
+          className={`circle ${active === 'projects' ? 'active' : ''}`}
+          onClick={() => handleTabChange('projects')}
+        >
           <div className="text-uppercase">
             projects
           </div>
         </div>
-        <div className={`circle ${active === 'technologies' ? 'active' : ''}`}
-          onClick={() => setActive('technologies')}>
+        <div 
+          className={`circle ${active === 'technologies' ? 'active' : ''}`}
+          onClick={() => handleTabChange('technologies')}
+        >
           <div className="text-uppercase">
             skills
           </div>
         </div>
       </div>
+      
+      {/* Always render main content */}
       {renderContent()}
+      
+      {/* Resume Modal - controlled by isOpen prop */}
+      <Modal
+        isOpen={active === 'resume'}
+        style={modalStyle}
+        onRequestClose={handleCloseModal}
+        contentLabel="Resume"
+      >
+        <CloseButton
+          onClick={handleCloseModal}
+          aria-label="Close resume"
+        >
+          <FontAwesomeIcon icon={faTimes} size="2x" />
+        </CloseButton>
+        <PDFContainer>
+          <StyledPDF
+            src="/content/TimothySayre.pdf"
+            title="Timothy Sayre's Resume"
+          />
+        </PDFContainer>
+      </Modal>
     </div>
   );
 };

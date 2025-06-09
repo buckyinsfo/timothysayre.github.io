@@ -11,7 +11,7 @@ interface Guide {
 }
 
 const GuidesSection = styled.div`
-  padding: 2rem;
+  padding: 5rem 2rem 0 2rem;
   min-height: 100vh;
   background-color: #f5f5f5;
 `;
